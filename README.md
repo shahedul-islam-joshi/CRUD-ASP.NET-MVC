@@ -26,3 +26,9 @@ This project demonstrates **CRUD operations** using **Entity Framework Core** an
 - C#
 
 ---
+
+## ⚙️ How to Run
+1. Clone the repo: `git clone https://github.com/shahedul-islam-joshi/CRUD-ASP.NET-MVC.git`
+2. Update the Connection String in `appsettings.json`.
+3. Run migrations: `Update-Database` in Package Manager Console.
+4. Press `F5` or run `dotnet run`.
