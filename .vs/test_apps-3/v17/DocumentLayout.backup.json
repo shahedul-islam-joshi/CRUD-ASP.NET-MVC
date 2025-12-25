@@ -66,8 +66,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-23T17:57:57.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-23T17:57:57.868Z"
             },
             {
               "$type": "Document",
@@ -79,8 +78,7 @@
               "RelativeToolTip": "Views\\AdminStudent\\Add.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-22T17:54:12.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T17:54:12.098Z"
             },
             {
               "$type": "Document",
@@ -92,8 +90,7 @@
               "RelativeToolTip": "Models\\ViewModel\\AddStudentRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T17:50:38.506Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T17:50:38.506Z"
             },
             {
               "$type": "Document",
@@ -105,8 +102,7 @@
               "RelativeToolTip": "Controllers\\AdminStudentController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAjwCYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T17:47:40.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T17:47:40.046Z"
             },
             {
               "$type": "Document",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T17:31:08.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T17:31:08.055Z"
             },
             {
               "$type": "Document",
@@ -131,8 +126,7 @@
               "RelativeToolTip": "Data\\AppsDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T17:20:51.657Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T17:20:51.657Z"
             },
             {
               "$type": "Document",
@@ -157,8 +151,7 @@
               "RelativeToolTip": "Views\\AdminStudent\\List.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-22T18:07:29.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-22T18:07:29.013Z"
             },
             {
               "$type": "Document",
