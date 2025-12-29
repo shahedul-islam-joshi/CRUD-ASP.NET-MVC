@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using test_apps_3.Data;
 using test_apps_3.Models.DomainModel;
 using test_apps_3.Models.ViewModel;
@@ -13,37 +14,58 @@ namespace test_apps_3.Controllers
         {
             this._appsDbContext = appsDbContext;
         }
+
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add(AddStudentRequest addStudentRequest)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(AddStudentRequest addStudentRequest)
         {
-            var studentAdd = new StudentClass
+            if (ModelState.IsValid)
             {
-                Name = addStudentRequest.Name,
-                Email = addStudentRequest.Email,
-                session = addStudentRequest.session
-            };
-            _appsDbContext._StudentsTable.Add(studentAdd);
-            _appsDbContext.SaveChanges();
-            return RedirectToAction("List");
+                var student = new StudentClass
+                {
+                    Name = addStudentRequest.Name,
+                    Email = addStudentRequest.Email,
+                    session = addStudentRequest.session,
+                    Address = addStudentRequest.Address,
+                    Gender = addStudentRequest.Gender,
+                    Date = addStudentRequest.Date
+                };
+
+                if (addStudentRequest.ProfileImage != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        await addStudentRequest.ProfileImage.CopyToAsync(ms);
+                        student.ProfilePicture = ms.ToArray();
+                    }
+                }
+
+                _appsDbContext._StudentsTable.Add(student);
+                await _appsDbContext.SaveChangesAsync();
+
+                return RedirectToAction("List");
+            }
+
+            return View(addStudentRequest);
         }
 
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var studentList = _appsDbContext._StudentsTable.ToList();
+            var studentList = await _appsDbContext._StudentsTable.ToListAsync();
             return View(studentList);
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var studentEdit = _appsDbContext._StudentsTable.FirstOrDefault(x=>x.Id==id);
+            var studentEdit = await _appsDbContext._StudentsTable.FirstOrDefaultAsync(x => x.Id == id);
             if (studentEdit != null)
             {
                 var editStudentRequest = new EditStudentRequest
@@ -51,7 +73,11 @@ namespace test_apps_3.Controllers
                     Id = studentEdit.Id,
                     Name = studentEdit.Name,
                     Email = studentEdit.Email,
-                    session = studentEdit.session
+                    session = studentEdit.session,
+                    Address = studentEdit.Address,
+                    Gender = studentEdit.Gender,
+                    Date = studentEdit.Date,
+                    ExistingProfilePicture = studentEdit.ProfilePicture
                 };
                 return View(editStudentRequest);
             }
@@ -59,36 +85,40 @@ namespace test_apps_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(EditStudentRequest editStudentRequest)
+        public async Task<IActionResult> Edit(EditStudentRequest editStudentRequest)
         {
-            var _studentEdit = new StudentClass
-            {
-                Id = editStudentRequest.Id,
-                Name = editStudentRequest.Name,
-                Email = editStudentRequest.Email,
-                session = editStudentRequest.session
-            };
-            var existingStudent = _appsDbContext._StudentsTable.Find(editStudentRequest.Id);
+            var existingStudent = await _appsDbContext._StudentsTable.FindAsync(editStudentRequest.Id);
             if (existingStudent != null)
             {
+                existingStudent.Name = editStudentRequest.Name;
+                existingStudent.Email = editStudentRequest.Email;
+                existingStudent.session = editStudentRequest.session;
+                existingStudent.Address = editStudentRequest.Address;
+                existingStudent.Gender = editStudentRequest.Gender;
+                existingStudent.Date = editStudentRequest.Date;
+
+                if (editStudentRequest.ProfileImage != null)
                 {
-                    existingStudent.Name = editStudentRequest.Name;
-                    existingStudent.Email = editStudentRequest.Email;
-                    existingStudent.session = editStudentRequest.session;
+                    using (var ms = new MemoryStream())
+                    {
+                        await editStudentRequest.ProfileImage.CopyToAsync(ms);
+                        existingStudent.ProfilePicture = ms.ToArray();
+                    }
                 }
-                _appsDbContext.SaveChanges();
+
+                await _appsDbContext.SaveChangesAsync();
             }
             return RedirectToAction("List");
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var studentDelete = _appsDbContext._StudentsTable.Find(id);
+            var studentDelete = await _appsDbContext._StudentsTable.FindAsync(id);
             if (studentDelete != null)
             {
                 _appsDbContext._StudentsTable.Remove(studentDelete);
-                _appsDbContext.SaveChanges();
+                await _appsDbContext.SaveChangesAsync();
             }
             return RedirectToAction("List");
         }
